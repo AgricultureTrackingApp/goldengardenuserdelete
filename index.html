@@ -99,7 +99,7 @@
 <body>
   <div class="login-container">
     <h2>Hesap Silme Sayfası</h2>
-    <input type="text" id="username" placeholder="E-Mail" />
+    <input type="text" id="email" placeholder="E-Mail" />
     <input type="password" id="password" placeholder="Şifre" />
     <button onclick="login()">Submit</button>
   </div>
@@ -113,20 +113,20 @@
 
   <script>
     function login() {
-      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      if (!username || !password) {
+      if (!email || !password) {
         showModal('Please fill in both fields.');
         return;
       }
 
-      fetch('https://example.com/login', {
-        method: 'POST',
+      fetch('http://89.163.221.14:8080/api/users/deleteUser', {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       })
         .then(response => {
           if (response.ok) {
